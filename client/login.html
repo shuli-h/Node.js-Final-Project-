@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  </head>
+  <body>
+    Username: <input type="text" id="username" /> Email:
+    <input type="text" id="email" />
+    <button onclick="loginData()">Login</button>
+
+    <p id="message"></p>
+
+    <script>
+      const LOGIN_URL = "http://localhost:3000/";
+
+      async function loginData() {
+        const inputUserName = document.getElementById("username").value;
+        const inputEmail = document.getElementById("email").value;
+
+        try {
+          const resp = await fetch(LOGIN_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({
+              username: inputUserName,
+              email: inputEmail,
+            }),
+          });
+
+          const data = await resp.json();
+
+          document.getElementById("message").textContent = resp.ok
+            ? "Login successful: " + (data.username || data.name || "OK")
+            : "Login failed: " + (data.message || "Unknown error");
+        } catch (error) {
+          document.getElementById("message").textContent =
+            "Error: " + error.message;
+        }
+      }
+    </script>
+  </body>
+</html>
