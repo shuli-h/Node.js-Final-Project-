@@ -12,8 +12,6 @@ shuli-hNode.js Final Project — Factory Server (Node.js + Express + MongoDB)
 * Environment-based configuration (`.env`)
 * Ready for local dev or cloud (MongoDB Atlas)
 
-> **Note:** If your actual route names differ, update the *API* section below accordingly.
-
 ---
 
 ## 🧰 Tech Stack
